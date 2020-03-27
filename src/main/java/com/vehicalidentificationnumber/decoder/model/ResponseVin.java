@@ -1,5 +1,8 @@
 package com.vehicalidentificationnumber.decoder.model;
 
+import com.vehicalidentificationnumber.decoder.exception.VinException;
+import org.springframework.http.HttpStatus;
+
 import java.util.Map;
 
 public class ResponseVin {
@@ -7,6 +10,11 @@ public class ResponseVin {
     private int count;
     private String message;
     private Map<String, String> vehicleDetails;
+    private VinException vinException;
+    private int httpStatus;
+
+    public ResponseVin() {
+    }
 
     public ResponseVin(Vin vin, Map<String, String> vehicleDetails) {
         this.vin = vin.getSearchCriteria().substring(3, vin.getSearchCriteria().length());
@@ -45,5 +53,21 @@ public class ResponseVin {
 
     public void setVehicleDetails(Map<String, String> vehicleDetails) {
         this.vehicleDetails = vehicleDetails;
+    }
+
+    public VinException getVinException() {
+        return vinException;
+    }
+
+    public void setVinException(VinException vinException) {
+        this.vinException = vinException;
+    }
+
+    public int getHttpStatus() {
+        return httpStatus;
+    }
+
+    public void setHttpStatus(int httpStatus) {
+        this.httpStatus = httpStatus;
     }
 }
